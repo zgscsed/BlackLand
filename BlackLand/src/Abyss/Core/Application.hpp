@@ -8,6 +8,8 @@
 #ifndef APPLICATION_HPP_
 #define APPLICATION_HPP_
 
+#include "Abyss/Event/ApplicationEvent.hpp"
+
 #include <string>
 
 namespace Abyss {
@@ -17,8 +19,11 @@ namespace Abyss {
 		Application(const std::string &name = "Abyss App");
 		~Application();
 
+		void OnEvent(Event &e);
 		// 应用程序执行
 		void Exec();
+
+		bool OnWindowClose(Event& e);
 
 	private:
 		bool isRunning_;

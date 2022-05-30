@@ -5,8 +5,6 @@ cmake_minimum_required (VERSION 3.8)
 
 project("src")
 
-INCLUDE_DIRECTORIES (${CMAKE_SOURCE_DIR}/BlackLand/src)
-
 MACRO(ADD_MSVC_PRECOMPILED_HEADER PrecompiledHeader PrecompiledSource SourcesVar)
   IF(MSVC)
     GET_FILENAME_COMPONENT(PrecompiledBasename ${PrecompiledHeader} NAME_WE)
@@ -25,12 +23,13 @@ MACRO(ADD_MSVC_PRECOMPILED_HEADER PrecompiledHeader PrecompiledSource SourcesVar
   ENDIF(MSVC)
 ENDMACRO(ADD_MSVC_PRECOMPILED_HEADER)
 
-ADD_MSVC_PRECOMPILED_HEADER("abysspch.h" "abysspch.cpp" MySources)
-
-ADD_LIBRARY(MyLibrary ${MySources})
-
 # 包含子项目。
 add_subdirectory ("Abyss")
 
 # 包含子项目。
 add_subdirectory ("Platform")
+
+ADD_MSVC_PRECOMPILED_HEADER("abysspch.h" "abysspch.cpp" MySources)
+
+ADD_LIBRARY(MyLibrary ${MySources})
+

@@ -4,5 +4,9 @@ version1的开发日志
 重新调整了一些代码结构，CMake构建整个系统。
 先Application类，然后实现窗口和事件类的基类。
 
+事件响应顺序：
+	app对象的OnEvent函数被设置为回调函数，传入窗口对象中，窗口事件通过调用回调函数，执行Application::OnEvent(event)，
+		使用EventDispatcher对象来分发事件。事件一层层向下传递。
+
 学习 cmake：
 	INCLUDE_DIRECTORIES 将指定目录添加到编译器的头文件搜索路径之下，指定的目录被解释成当前源码路径的相对路径。 生效范围需要深究一下。

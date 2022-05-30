@@ -36,7 +36,7 @@ target_include_directories( ${PROJECT_NAME}
 target_link_libraries(BlackLand 
     MyLibrary
     glad
-    Core
+    Abyss
     minlog)
 
 

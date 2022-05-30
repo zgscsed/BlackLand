@@ -4,7 +4,20 @@
 cmake_minimum_required (VERSION 3.8)
 
 project("Abyss")
-INCLUDE_DIRECTORIES (${CMAKE_SOURCE_DIR}/BlackLand/src)
-add_subdirectory("Core")
 
-add_subdirectory("Render")
+INCLUDE_DIRECTORIES (${CMAKE_SOURCE_DIR}/BlackLand/src)
+
+AUX_SOURCE_DIRECTORY(./Core ABYSS_SOURCE_FILES)
+AUX_SOURCE_DIRECTORY(./Render ABYSS_SOURCE_FILES)
+AUX_SOURCE_DIRECTORY(./Event ABYSS_SOURCE_FILES)
+
+# Add a library with the above sources
+add_library(${PROJECT_NAME} ${ABYSS_SOURCE_FILES})
+
+# 该目录文件需要使用三方库，需要将库目录加入
+target_include_directories( ${PROJECT_NAME}
+   PUBLIC ${3RDPARTY_PATH}
+    ${GLFW_HEAD}
+	${GLAD_HEAD}
+   PUBLIC ${CMAKE_SOURCE_DIR}/BlackLand/src
+)

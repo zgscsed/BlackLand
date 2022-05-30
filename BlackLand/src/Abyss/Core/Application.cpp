@@ -10,6 +10,7 @@
 #include "Application.hpp"
 
 
+
 namespace Abyss {
 
 	Application::Application(const std::string& name)
@@ -22,6 +23,12 @@ namespace Abyss {
 		ABYSS_LOG_INFO << "Application destructor...";
 	}
 
+	void Application::OnEvent(Event& e)
+	{
+		EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<WindowCloseEvent>(AS_BIND_EVENT_FN(Application::OnWindowClose));
+	}
+
 	// 应用程序执行
 	void Application::Exec()
 	{
@@ -30,6 +37,11 @@ namespace Abyss {
 		{
 
 		}
+	}
+
+	bool Application::OnWindowClose(Event& e)
+	{
+		return true;
 	}
 
 }
