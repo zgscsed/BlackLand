@@ -37,6 +37,7 @@ target_link_libraries(BlackLand
     MyLibrary
     glad
     Abyss
+    Platform
     minlog)
 
 

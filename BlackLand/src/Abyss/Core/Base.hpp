@@ -10,6 +10,26 @@
 
 #include <memory>
 
+
+#ifdef _WIN32
+ //define something for Windows (32-bit and 64-bit, this part is common)
+	#define AS_PLATFORM_WINDOWS            // windowƽ̨
+	#ifdef _WIN64
+   //define something for Windows (64-bit only)
+		#define AS_PLATFORM_WINDOWS 
+	#else
+	   //define something for Windows (32-bit only)
+	#endif
+#elif __linux__
+ // linux
+#elif __unix__ // all unices not caught above
+ // Unix
+#elif defined(_POSIX_VERSION)
+ // POSIX
+#else
+#error "Unknown"
+#endif
+
 namespace Abyss {
 
 #define BIT(x) (1 << x)
@@ -17,7 +37,7 @@ namespace Abyss {
 	template<typename T>
 	using Scope = std::unique_ptr<T>;
 	template<typename T, typename ... Args>
-	constexpr Scope<T> CreateScop(Args&& ... args)
+	constexpr Scope<T> CreateScope(Args&& ... args)
 	{
 		return std::make_unique<T>(std::forward<Args>(args)...);
 	}
@@ -25,7 +45,7 @@ namespace Abyss {
 	template<typename T>
 	using Ref = std::shared_ptr<T>;
 	template<typename T, typename ... Args>
-	constexpr Ref<T> CreateScop(Args&& ... args)
+	constexpr Ref<T> CreateRef(Args&& ... args)
 	{
 		return std::make_shared<T>(std::forward<Args>(args)...);
 	}
