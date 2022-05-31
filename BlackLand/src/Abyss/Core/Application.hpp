@@ -8,8 +8,10 @@
 #ifndef APPLICATION_HPP_
 #define APPLICATION_HPP_
 
+#include "Abyss/Core/Base.hpp"
 #include "Abyss/Event/ApplicationEvent.hpp"
 
+#include "Abyss/Core/Window.hpp"
 #include <string>
 
 namespace Abyss {
@@ -27,6 +29,7 @@ namespace Abyss {
 
 	private:
 		bool isRunning_;
+		Scope<Window> window_;
 	};
 
 }

@@ -7,10 +7,14 @@ project("Platform")
 
 INCLUDE_DIRECTORIES (${CMAKE_SOURCE_DIR}/BlackLand/src)
 
-AUX_SOURCE_DIRECTORY(./Windows PLATFORM_SOURCE_FILES)
+file(GLOB PLATFORM_SOURCE_FILES 
+    "${CMAKE_SOURCE_DIR}/BlackLand/src/Platform/Windows/*.hpp"
+    "${CMAKE_SOURCE_DIR}/BlackLand/src/Platform/Windows/*.cpp"
+)
+# AUX_SOURCE_DIRECTORY(./Windows PLATFORM_SOURCE_FILES)
 
 # Add a library with the above sources
-add_library(${PROJECT_NAME} ${PLATFORM_SOURCE_FILES})
+add_library(${PROJECT_NAME} STATIC ${PLATFORM_SOURCE_FILES})
 
 # 该目录文件需要使用三方库，需要将库目录加入
 target_include_directories( ${PROJECT_NAME}

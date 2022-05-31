@@ -17,6 +17,8 @@ namespace Abyss {
 		: isRunning_(false)
 	{
 		ABYSS_LOG_INFO << "Application constructor...";
+		window_ = Window::Create(WindowProps(name));
+		window_->SetEventCallback(AS_BIND_EVENT_FN(Application::OnEvent));
 	}
 	Application::~Application()
 	{
@@ -36,11 +38,14 @@ namespace Abyss {
 		while (isRunning_)
 		{
 
+			// ¸üÐÂ
+			window_->OnUpdate();
 		}
 	}
 
 	bool Application::OnWindowClose(Event& e)
 	{
+		isRunning_ = false;
 		return true;
 	}
 

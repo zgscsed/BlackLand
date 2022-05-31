@@ -12,3 +12,7 @@ version1的开发日志
 
 学习 cmake：
 	INCLUDE_DIRECTORIES 将指定目录添加到编译器的头文件搜索路径之下，指定的目录被解释成当前源码路径的相对路径。 生效范围需要深究一下。
+	target_include_directories 添加 public 标志的作用
+
+2022年5月31日22:03:35
+

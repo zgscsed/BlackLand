@@ -32,12 +32,12 @@ add_executable (BlackLand ${HEAD_FILES} ${SOURCE_FILES})
 
 target_include_directories( ${PROJECT_NAME}
     PUBLIC ${GLAD_HEAD}
+       ${PLATFORM_SOURCE_FILES}
 )
 target_link_libraries(BlackLand 
     MyLibrary
     glad
     Abyss
-    Platform
     minlog)
 
 

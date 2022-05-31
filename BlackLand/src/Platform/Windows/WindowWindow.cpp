@@ -28,7 +28,7 @@ WindowWindow::~WindowWindow()
 
 void WindowWindow::OnUpdate()
 {
-
+	ABYSS_LOG_INFO << "Window update...";
 }
 
 int WindowWindow::GetWidth() const
@@ -91,6 +91,8 @@ int WindowWindow::Init(const WindowProps& props)
 		WindowCloseEvent event;
 		data.eventCallback_(event);
 		});
+
+	return 0;
 }
 
 void WindowWindow::Shutdown()
