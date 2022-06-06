@@ -24,13 +24,5 @@ MACRO(ADD_MSVC_PRECOMPILED_HEADER PrecompiledHeader PrecompiledSource SourcesVar
 ENDMACRO(ADD_MSVC_PRECOMPILED_HEADER)
 
 
-# 包含子项目。
-add_subdirectory ("Platform")
-
-# 包含子项目。
-add_subdirectory ("Abyss")
-
 ADD_MSVC_PRECOMPILED_HEADER("abysspch.h" "abysspch.cpp" MySources)
-
-ADD_LIBRARY(MyLibrary ${MySources})
 

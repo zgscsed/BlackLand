@@ -14,7 +14,7 @@
 namespace Abyss {
 
 	Application::Application(const std::string& name)
-		: isRunning_(false)
+		: isRunning_(true)
 	{
 		ABYSS_LOG_INFO << "Application constructor...";
 		window_ = Window::Create(WindowProps(name));

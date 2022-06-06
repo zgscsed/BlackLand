@@ -14,7 +14,7 @@
 
 namespace Abyss {
 	// 为了适用不同的平台， 需要将创建对象时，需要判断平台，其它也是类似的方法，通过接口获取不同的平台实例
-	Scope<Window> Create(const WindowProps& props)
+	Scope<Window> Window::Create(const WindowProps& props)
 	{
 		#ifdef AS_PLATFORM_WINDOWS
 			return CreateScope<WindowWindow>(props);

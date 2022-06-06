@@ -17,6 +17,20 @@ namespace Abyss {
 	{
 		ABYSS_LOG_ERROR<<"GLFW Error "<< error<<" : "<< description;
 	}
+
+	// ÊäÈë
+	void processInput(GLFWwindow* window)
+	{
+		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+			glfwSetWindowShouldClose(window, true);
+	}
+
+	void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+	{
+		// make sure the viewport matches the new window dimensions; note that width and 
+		// height will be significantly larger than specified on retina displays.
+		glViewport(0, 0, width, height);
+	}
 WindowWindow::WindowWindow(const WindowProps& props)
 {
 	Init(props);
@@ -29,6 +43,19 @@ WindowWindow::~WindowWindow()
 void WindowWindow::OnUpdate()
 {
 	ABYSS_LOG_INFO << "Window update...";
+	// input
+// -----
+	processInput(window_);
+
+	// render
+	// ------
+	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
+	// -------------------------------------------------------------------------------
+	glfwSwapBuffers(window_);
+	glfwPollEvents();
 }
 
 int WindowWindow::GetWidth() const
@@ -79,8 +106,14 @@ int WindowWindow::Init(const WindowProps& props)
 	}
 	++windowCount;
 
-	//glfwMakeContextCurrent(window_);
-	//glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+	glfwMakeContextCurrent(window_);
+	glfwSetFramebufferSizeCallback(window_, framebuffer_size_callback);
+
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+	{
+		ABYSS_LOG_INFO << "Failed to initialize GLAD";
+		return -1;
+	}
 
 	glfwSetWindowUserPointer(window_, &data_);
 
@@ -91,6 +124,7 @@ int WindowWindow::Init(const WindowProps& props)
 		WindowCloseEvent event;
 		data.eventCallback_(event);
 		});
+
 
 	return 0;
 }

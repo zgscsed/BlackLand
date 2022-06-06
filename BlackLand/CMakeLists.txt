@@ -20,25 +20,33 @@ add_subdirectory ("src")
 
 set (HEAD_FILES
 	"BlackLand.hpp"
+    "src/abyss.hpp"
 )
 
 set (SOURCE_FILES
 	"BlackLand.cpp"
 	${3RDPARTY_PATH}/glad/src/glad.c)
 
+file(GLOB ABYSS_HEAD_FILES CONFIGUE_DEPENDS "src/Abyss/Core/*.hpp" "src/Abyss/Event/*.hpp" "src/Abyss/Render/*.hpp")
+file(GLOB ABYSS_SOURCE_FILES CONFIGUE_DEPENDS "src/Abyss/Core/*.cpp" "src/Abyss/Event/*.cpp" "src/Abyss/Render/*.cpp")
 
+file(GLOB PLATFORM_HEAD_FILES CONFIGUE_DEPENDS "src/Platform/Windows/*.hpp")
+file(GLOB PLATFORM_SOURCE_FILES CONFIGUE_DEPENDS "src/Platform/Windows/*.cpp")
 # 将源代码添加到此项目的可执行文件。
-add_executable (BlackLand ${HEAD_FILES} ${SOURCE_FILES})
+add_executable (BlackLand ${HEAD_FILES} ${SOURCE_FILES} ${ABYSS_SOURCE_FILES} ${PLATFORM_SOURCE_FILES})
 
 target_include_directories( ${PROJECT_NAME}
-    PUBLIC ${GLAD_HEAD}
-       ${PLATFORM_SOURCE_FILES}
+   PUBLIC ${3RDPARTY_PATH}
+   PUBLIC ${GLFW_HEAD}
+    ${GLFW_LIB}
+	${GLAD_HEAD}
+   PUBLIC ${CMAKE_SOURCE_DIR}/BlackLand/src
 )
 target_link_libraries(BlackLand 
-    MyLibrary
     glad
-    Abyss
-    minlog)
+    minlog
+	${GLFW_LIB}/glfw3.lib
+)
 
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)

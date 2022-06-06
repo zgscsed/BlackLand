@@ -8,6 +8,7 @@ using namespace std;
 int main()
 {
 	cout << "Hello CMake." << endl;
-	Abyss::Application app;
+	Abyss::Application app("Abyss app");
+	app.Exec();
 	return 0;
 }
