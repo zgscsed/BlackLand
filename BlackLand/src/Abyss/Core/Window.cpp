@@ -19,7 +19,7 @@ namespace Abyss {
 		#ifdef AS_PLATFORM_WINDOWS
 			return CreateScope<WindowWindow>(props);
 		#else 
-			AS_LOG_ERROR << "Unknown platform!";
+			ABYSS_LOG_ERROR << "Unknown platform!";
 			return nullptr;
 		#endif
 	}

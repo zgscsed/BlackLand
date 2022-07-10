@@ -9,12 +9,14 @@
 #define LOG_HPP_
 
 #include <minlog/src/logger.hpp>
-
+using namespace minlog;
 namespace Abyss {
-#define ABYSS_LOG_DEBUG LOG_DEBUG 
-#define ABYSS_LOG_INFO LOG_INFO
-#define ABYSS_LOG_WARN LOG_WARN
-#define ABYSS_LOG_ERROR LOG_ERROR
+
+#define ABYSS_LOG_DEBUG minlog::Logger(__FILE__, __LINE__, minlog::Logger::DEBUG).Stream()
+#define ABYSS_LOG_INFO minlog::Logger(__FILE__, __LINE__, minlog::Logger::INFO).Stream()
+#define ABYSS_LOG_WARN minlog::Logger(__FILE__, __LINE__, minlog::Logger::WARN).Stream()
+#define ABYSS_LOG_ERROR minlog::Logger(__FILE__, __LINE__, minlog::Logger::ERROR).Stream()
+#define ABYSS_LOG_FAIL minlog::Logger(__FILE__, __LINE__, minlog::Logger::FAIL).Stream()
 }
 #endif // !LOG_HPP_
 

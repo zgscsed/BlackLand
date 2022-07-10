@@ -11,6 +11,7 @@ INCLUDE_DIRECTORIES (${CMAKE_SOURCE_DIR}/BlackLand)
 
 message("start camke project main BlackLand")
 
+add_definitions(-DAS_BUILD_DLL=1)
 # 包含子项目。
 add_subdirectory ("3rdparty")
 
@@ -30,8 +31,8 @@ set (SOURCE_FILES
 file(GLOB ABYSS_HEAD_FILES CONFIGUE_DEPENDS "src/Abyss/Core/*.hpp" "src/Abyss/Event/*.hpp" "src/Abyss/Render/*.hpp")
 file(GLOB ABYSS_SOURCE_FILES CONFIGUE_DEPENDS "src/Abyss/Core/*.cpp" "src/Abyss/Event/*.cpp" "src/Abyss/Render/*.cpp")
 
-file(GLOB PLATFORM_HEAD_FILES CONFIGUE_DEPENDS "src/Platform/Windows/*.hpp")
-file(GLOB PLATFORM_SOURCE_FILES CONFIGUE_DEPENDS "src/Platform/Windows/*.cpp")
+file(GLOB PLATFORM_HEAD_FILES CONFIGUE_DEPENDS "src/Platform/Windows/*.hpp" "src/Platform/OpenGL/*.hpp")
+file(GLOB PLATFORM_SOURCE_FILES CONFIGUE_DEPENDS "src/Platform/Windows/*.cpp" "src/Platform/OpenGL/*.cpp")
 # 将源代码添加到此项目的可执行文件。
 add_executable (BlackLand ${HEAD_FILES} ${SOURCE_FILES} ${ABYSS_SOURCE_FILES} ${PLATFORM_SOURCE_FILES})
 

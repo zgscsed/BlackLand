@@ -5,7 +5,7 @@
  * @Description: windows 平台下的窗口类
  */
 
-#include "Abyss/Core/Base.hpp"
+
 #include "Platform/Windows/WindowWindow.hpp"
 
 #include "Abyss/Event/ApplicationEvent.hpp"
@@ -42,10 +42,10 @@ WindowWindow::~WindowWindow()
 
 void WindowWindow::OnUpdate()
 {
-	ABYSS_LOG_INFO << "Window update...";
+	//ABYSS_LOG_INFO << "Window update...";
 	// input
 // -----
-	processInput(window_);
+	//processInput(window_);
 
 	// render
 	// ------
@@ -85,7 +85,6 @@ int WindowWindow::Init(const WindowProps& props)
 	data_.height_ = props.height_;
 
 	ABYSS_LOG_INFO << "Create window " << props.title_ << " ; width:" << props.width_ << " ;height: " << props.height_;
-
 	if (windowCount == 0)
 	{
 		ABYSS_LOG_INFO << "glfwInit";
@@ -100,8 +99,9 @@ int WindowWindow::Init(const WindowProps& props)
 	window_ = glfwCreateWindow(data_.width_, data_.height_, data_.title_.c_str(), nullptr, nullptr);
 	if (window_ == nullptr)
 	{
+		glfwTerminate(); 
+		// 这个调用ABYSS_LOG_ERROR 提出非法标记
 		ABYSS_LOG_ERROR << "Failed to create GLFW window";
-		glfwTerminate();
 		return -1;
 	}
 	++windowCount;
@@ -125,6 +125,23 @@ int WindowWindow::Init(const WindowProps& props)
 		data.eventCallback_(event);
 		});
 
+	glfwSetKeyCallback(window_, [](GLFWwindow* window, int key, int scancode, int action, int mods)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+			switch (action)
+			{
+			case GLFW_PRESS:
+				ABYSS_LOG_INFO << "key press:" << key;
+				break;
+			case GLFW_RELEASE:
+				ABYSS_LOG_INFO << "key release:" << key;
+				break;
+			case GLFW_REPEAT:
+				ABYSS_LOG_INFO << "key repeat:" << key;
+				break;
+			}
+		});
 
 	return 0;
 }
@@ -132,6 +149,7 @@ int WindowWindow::Init(const WindowProps& props)
 void WindowWindow::Shutdown()
 {
 
+	glfwSetWindowShouldClose(window_, true);
 }
 
 }

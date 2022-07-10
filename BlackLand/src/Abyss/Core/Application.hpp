@@ -31,7 +31,6 @@ namespace Abyss {
 		bool isRunning_;
 		Scope<Window> window_;
 	};
-
 }
 
 #endif // !APPLICATION_HPP_

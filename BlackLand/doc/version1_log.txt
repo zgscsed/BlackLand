@@ -14,5 +14,22 @@ version1的开发日志
 	INCLUDE_DIRECTORIES 将指定目录添加到编译器的头文件搜索路径之下，指定的目录被解释成当前源码路径的相对路径。 生效范围需要深究一下。
 	target_include_directories 添加 public 标志的作用
 
-2022年5月31日22:03:35
+2022年6月8日21:59:04
+计划：实现显示一个角色，并能控制移动。实现一个地图。
+
+	涉及类：角色类， 状态机类，将控制指令封装成角色事件，通过事件系统进行处理
+		渲染类 Render
+		摄像机类 Camera
+
+	1、使用个类的静态方法来选择使用的render 版本
+		RendererAPI类：
+			有一个静态变量API_， 目前仅支持OpenGL版本实现。
+			成员函数：
+				Init 初始化
+				SetViewport
+				SetClearColor()
+				Clear()
+				// 还应该有函数用来绘制
+	2、纹理类 OpenGLTexture
+		// 加载纹理，绑定到着色器上
 

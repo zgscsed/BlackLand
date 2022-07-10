@@ -29,6 +29,7 @@ public:
         INFO,
         WARN,
         ERROR,
+        FAIL,
         NUM_LEVEL
     };
 
@@ -63,12 +64,11 @@ Logging logging_;
 
 }
 
-
 #define LOG_DEBUG minlog::Logger(__FILE__, __LINE__, minlog::Logger::DEBUG).Stream()
 #define LOG_INFO minlog::Logger(__FILE__, __LINE__, minlog::Logger::INFO).Stream()
 #define LOG_WARN minlog::Logger(__FILE__, __LINE__, minlog::Logger::WARN).Stream()
 #define LOG_ERROR minlog::Logger(__FILE__, __LINE__, minlog::Logger::ERROR).Stream()
-
+#define LOG_FAIL minlog::Logger(__FILE__, __LINE__, minlog::Logger::FAIL).Stream()
 
 
 #endif  //LOGGER_HPP_

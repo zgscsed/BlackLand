@@ -30,6 +30,17 @@
 #error "Unknown"
 #endif
 
+#ifdef AS_PLATFORM_WINDOWS
+	#ifdef AS_BUILD_DLL
+		#define AS_API __declspec(dllexport)
+	#else
+		#define AS_API __declspec(dllimport)
+	#endif
+#else
+	#error Only supports Windows!
+#endif
+
+
 namespace Abyss {
 
 #define BIT(x) (1 << x)
@@ -50,7 +61,9 @@ namespace Abyss {
 		return std::make_shared<T>(std::forward<Args>(args)...);
 	}
 
+	// 定义变量
+	using uint = unsigned int;
 }
 
-#include "Log.hpp"
+#include "Abyss/Core/Log.hpp"
 #endif // !BASE_HPP_

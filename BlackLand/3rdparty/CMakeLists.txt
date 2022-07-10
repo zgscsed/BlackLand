@@ -6,7 +6,7 @@ set (3RDPARTY_PATH ${CMAKE_SOURCE_DIR}/BlackLand/3rdparty CACHE INTERNAL "ICD Li
 
 set (GLAD_HEAD ${CMAKE_SOURCE_DIR}/BlackLand/3rdparty/glad/include CACHE INTERNAL "ICD Library location" )
 set (GLFW_HEAD ${CMAKE_SOURCE_DIR}/BlackLand/3rdparty/glfw/include CACHE INTERNAL "ICD Library location" )
-set (GLFW_LIB ${CMAKE_SOURCE_DIR}/BlackLand/3rdparty/glfw/lib-vc2017 CACHE INTERNAL "ICD Library location" )
+set (GLFW_LIB ${CMAKE_SOURCE_DIR}/BlackLand/3rdparty/glfw/lib-vc2022 CACHE INTERNAL "ICD Library location" )
 set(GladSourceDir ${CMAKE_SOURCE_DIR}/BlackLand/3rdparty/glad)
 
 file(GLOB GladSrc 

@@ -24,6 +24,7 @@
 #include <iostream>
 
 #include "../src/logger.hpp"
+using namespace minlog;
 int main(void)
 {
     std::cout << "hello log..."<<std::endl;

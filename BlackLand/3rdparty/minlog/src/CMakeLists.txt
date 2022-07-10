@@ -12,7 +12,7 @@ set(SOURCE_FILES
 
 set(target_name ${lib_name})
 
-add_library(${target_name} STATIC ${SOURCE_FILES})
+add_library(${target_name} ${SOURCE_FILES})
 
 set_target_properties(${target_name}
         PROPERTIES
