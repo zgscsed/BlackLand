@@ -21,7 +21,7 @@ namespace Abyss {
 		virtual uint GetHeight() const override { return height_; }
 		virtual uint GetRendererID() const override { return rendererID_; }
 
-		virtual void Bind(uint slot = 0) const override {};
+		virtual void Bind(uint slot = 0) const override;
 		virtual bool IsLoaded() const override { return isLoaded_; }
 		virtual bool operator==(const Texture& other) const override
 		{

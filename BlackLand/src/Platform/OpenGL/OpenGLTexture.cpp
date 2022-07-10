@@ -72,7 +72,7 @@ namespace Abyss {
 
 	}
 
-	void OpenGLTexture2D::Bind(uint slot = 0) const
+	void OpenGLTexture2D::Bind(uint slot) const
 	{
 		glActiveTexture(slot);
 		glBindTexture(GL_TEXTURE_2D, rendererID_);

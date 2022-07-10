@@ -33,3 +33,5 @@ version1的开发日志
 	2、纹理类 OpenGLTexture
 		// 加载纹理，绑定到着色器上
 
+	3、shader类，管理顶点着色器和片段着色器，并且为Uniform参数赋值 
+
