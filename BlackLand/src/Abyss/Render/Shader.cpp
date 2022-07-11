@@ -7,10 +7,20 @@
 
 #include "Abyss/Render/Shader.hpp"
 #include "Abyss/Render/RendererAPI.hpp"
+
+#include "Platform/OpenGL/OpenGLShader.hpp"
 namespace Abyss {
 	Ref<Shader> Shader::Create(const std::string& name, const std::string& vertexPath, const std::string& fragmentPath)
 	{
-		ABYSS_LOG_INFO << "ÐèÒªÍêÉÆ";
+		switch (RendererAPI::GetAPI())
+		{
+		case RendererAPI::API::None:
+			ABYSS_LOG_ERROR << "RendererAPI::API::None is currently not support ";
+			return nullptr;
+		case RendererAPI::API::OpenGL:
+			return CreateRef<OpenGLShader>(name, vertexPath, fragmentPath);
+		}
+		ABYSS_LOG_INFO << "unknown API type";
 		return nullptr;
 	}
 }

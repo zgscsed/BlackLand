@@ -72,6 +72,12 @@ namespace Abyss {
 
 	}
 
+	void OpenGLTexture2D::SetData(void* data, uint size)
+	{
+		uint32_t bpp = dataFormat_ == GL_RGBA ? 4 : 3;
+		//HZ_CORE_ASSERT(size == m_Width * m_Height * bpp, "Data must be entire texture!");
+		glTextureSubImage2D(rendererID_, 0, 0, 0, width_, height_, dataFormat_, GL_UNSIGNED_BYTE, data);
+	}
 	void OpenGLTexture2D::Bind(uint slot) const
 	{
 		glActiveTexture(slot);
