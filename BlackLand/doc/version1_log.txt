@@ -35,3 +35,5 @@ version1的开发日志
 
 	3、shader类，管理顶点着色器和片段着色器，并且为Uniform参数赋值 
 
+	4、VertexBuffer 类，封装了顶点缓冲对象， 封装比如opengl中的VBO对象的创建和绑定操作
+
